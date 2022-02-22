@@ -1,0 +1,23 @@
+{
+  "name": "menu",
+  "version": "1.0.0",
+  "description": "Restaurant Menu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "menu",
+    "food"
+  ],
+  "author": "UManizales - Formación Empresarial IV",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "firebase": "^9.6.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0"
+  }
+}
