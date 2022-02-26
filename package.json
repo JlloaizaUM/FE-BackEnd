@@ -4,7 +4,8 @@
   "description": "Restaurant Menu",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "babel-node": "babel-node --preset=@babel/preset-env",
+    "dev": "nodemon --exec npm run babel-node src/index.js"
   },
   "keywords": [
     "menu",
@@ -14,10 +15,18 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "firebase": "^9.6.7"
+    "express-handlebars": "^6.0.2",
+    "firebase-admin": "^10.0.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "eslint": "^8.9.0"
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "eslint": "^8.9.0",
+    "nodemon": "^2.0.15"
   }
 }
