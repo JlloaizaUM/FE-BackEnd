@@ -12,7 +12,8 @@ export const getMenus = async (req, res) => {
         console.log(menus)
         res.send({ listMenus: menus })
         res.sendStatus("staus listMenu", 200);
-    } catch (error) {
+    }
+    catch (error) {
         res.sendStatus("server error get list menu", 500);
     }
 
