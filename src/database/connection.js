@@ -1,19 +1,18 @@
-
 import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore';
+import config from "../config";
 
-
-  const firebaseConfig = {
-
-  apiKey: "AIzaSyAFxkUbnU2pY1cbHZip6gS7wXg4ov5jf0k",
-  authDomain: "bonapettit-app.firebaseapp.com",
-  projectId: "bonapettit-app",
-  storageBucket: "bonapettit-app.appspot.com",
-  messagingSenderId: "165658321350",
-  appId: "1:165658321350:web:e804993172d6e88db8d2c7",
-  measurementId: "G-XMPLC0YL1Y"
-  };
-
+const firebaseConfig = {
+  apiKey: config.apiKey,
+  authDomain: config.authDomain,
+  projectId: config.projectId,
+  storageBucket: config.storageBucket,
+  messagingSenderId: config.messagingSenderId,
+  appId: config.appId,
+  measurementId: config.measurementId
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const db = getFirestore(app);
+
+export { db };

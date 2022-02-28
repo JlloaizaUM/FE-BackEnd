@@ -1,12 +1,15 @@
-import express from "express"; //se importa el modulo express
+import express from "express";
 import config  from "./config";
+import usersRoutes from "./routes/users.routes";
 
-const app = express() //ejecuta el modulo para configurar el servidor
+const app = express();
 
-//configurar el puerto
+app.set('port', config.port);
 
-app.set('port', config.port)
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
+app.use(usersRoutes);
 
 export default app
 
