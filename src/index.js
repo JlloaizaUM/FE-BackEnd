@@ -1,6 +1,5 @@
-import app from './app'
-import './firebase';
+import app from "./app"
+app.listen(app.get('port'))
 
-app.listen(app.get('port'), () => {
-  console.log(`app listening on port ${app.get('port')}`)
-});
+
+console.log('server on port', app.get('port'))

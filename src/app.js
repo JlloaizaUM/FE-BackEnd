@@ -1,13 +1,12 @@
-import express from 'express'
-import config from './config'
+import express from "express"; //se importa el modulo express
+import config  from "./config";
 
-import menuRoutes from './routes/menu.routes'
+const app = express() //ejecuta el modulo para configurar el servidor
 
-const app = express()
+//configurar el puerto
 
-// settings
 app.set('port', config.port)
 
-app.use(menuRoutes)
 
 export default app
+
