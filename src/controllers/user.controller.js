@@ -1,14 +1,45 @@
 import { db } from '../database/connection';
-import { getDoc, doc } from 'firebase/firestore';
 
-export async function getUsers(req, res, id) {
-    const docRef = doc(db, "users", "6ClOZsipScOpDMG8GzdW");
-    const docSnap = await getDoc(docRef);
+export async function getRestaurantPage(req, res) {
 
-    if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
+    var id = req.params['id'];
+
+    const userRef = db.collection("users").doc(id);
+    const user = await userRef.get();
+    if (!doc.exists) {
+        res.status(400).json({
+            'error': 'No existe restaurante'
+        });
     }
+
+    const dishesRef = db.collection("users/" + user.id + "/dishes");
+    const snapshot = await dishesRef.get();
+
+    response = user.data();
+    response.dishes = snapshot.docs;
+
+    res.status(200).json(response);
+
+}
+
+export async function getFeaturedRestaurant(req, res) {
+
+    const usersRef = db.collection("users");
+    const snapshot = await usersRef.get();
+
+    response = {};
+    if (snapshot.size > 3) {
+        response.users = getThreeUsers(snapshot.docs);
+    } else {
+        response.users = snapshot.docs;
+    }
+
+    res.status(200).json(response);
+
+}
+
+function getThreeUsers(users) {
+    return [...lista]
+        .sort(() => Math.random() > 0.5 ? 1 : -1)
+        .slice(0, 3);
 }

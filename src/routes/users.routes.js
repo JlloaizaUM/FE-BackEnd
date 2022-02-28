@@ -3,6 +3,6 @@ import * as users from '../controllers/user.controller';
 
 const router = Router();
 
-router.get('/user', users.getUsers);
+router.get('/restaurant/:id', users.getRestaurantPage);
 
 export default router
