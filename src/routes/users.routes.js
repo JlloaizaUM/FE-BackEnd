@@ -3,6 +3,7 @@ import * as users from '../controllers/user.controller';
 
 const router = Router();
 
-router.get('/restaurant/:id', users.getRestaurantPage);
+router.get('/restaurant/:path', users.getRestaurantPage);
+router.get('/restaurants', users.getFeaturedRestaurant);
 
 export default router
