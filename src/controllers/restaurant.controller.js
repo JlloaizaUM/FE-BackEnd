@@ -27,7 +27,7 @@ export async function getRestaurantPage(req, res) {
 
         var dishes = [];
         snapshot.docs.forEach(doc => {
-            dishes.push(doc.data());
+            dishes.push(Object.assign({}, {"id":doc.id, "cat":collection.id}, doc.data()));
         });
 
         var cat = { name: "", dishes: [] };
