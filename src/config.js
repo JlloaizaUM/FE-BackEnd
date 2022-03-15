@@ -13,15 +13,5 @@ export default {
     auth_uri: process.env.auth_uri,
     token_uri: process.env.token_uri,
     auth_provider_x509_cert_url: process.env.auth_provider_x509_cert_url,
-    client_x509_cert_url: process.env.client_x509_cert_url,
-    application: {
-        cors: {
-            server: [
-                {
-                    origin: "*", //servidor que deseas que consuma o (*) en caso que sea acceso libre
-                    credentials: true
-                }
-            ]
-        }
-    }
+    client_x509_cert_url: process.env.client_x509_cert_url
 }
