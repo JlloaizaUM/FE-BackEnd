@@ -1,4 +1,3 @@
-import { response } from 'express';
 import { db } from '../database/connection';
 
 export async function getRestaurantPage(req, res) {

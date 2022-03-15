@@ -1,6 +1,17 @@
+//GET
+export const loginUser = async (req,res)=>{
+    const user = req.body;
 
-export const loginUser = (req,res)=>{
-    const user = req.body();
+    return res.json("recibido");
+}
 
-    return res.json(Token);
+//POST
+export const signup = async (req,res) => {
+    let clientData = req.body;
+    clientData.forEach( client => {
+        fireRecord.push({
+
+        });
+    });
+    res.json('entregado');
 }

@@ -1,8 +1,7 @@
 import express from "express";
 import config from "./config";
-import usersRoutes from "./routes/users.routes";
+import restaurantRoutes from "./routes/restaurant.routes";
 import loginRoutes from "./routes/login.routes";
-import registerRoutes from "./routes/register.routes";
 
 const app = express();
 
@@ -19,9 +18,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(usersRoutes);
+app.use(restaurantRoutes);
 app.use(loginRoutes);
-app.use(registerRoutes);
 
 export default app
 
