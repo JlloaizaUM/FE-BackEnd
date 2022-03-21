@@ -24,6 +24,6 @@ initializeApp({
 });
 
 const db = getFirestore();
-const storage = getStorage().bucket();
+const storage = getStorage();
 
 export { db, storage };
