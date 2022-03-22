@@ -76,3 +76,7 @@ export const delete_dish = async (req, res) => {
         .doc(`${page.userid}/${page.cat}/${page.id}`).delete();
     res.status(200).json({ message: `deleted document with ID: ${page.id}` });
 }
+
+export const delete_category = async (req,res) => {
+    
+}

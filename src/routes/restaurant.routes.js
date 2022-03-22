@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import fs from 'fs';
 import multer from 'multer';
+import { restart } from 'nodemon';
 import path from 'path';
 import { promisify } from 'util';
 
@@ -43,6 +44,8 @@ router.post('/upload-dish', restaurant.upload_dish);
 
 router.put('/update-dish', restaurant.update_dish);
 
-router.delete('/delete-dish', restaurant.delete_dish)
+router.delete('/delete-dish', restaurant.delete_dish);
+
+router.delete('/delete-category', restaurant.delete_category);
 
 export default router

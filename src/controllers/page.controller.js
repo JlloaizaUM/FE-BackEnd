@@ -1,21 +1,27 @@
 import { db } from '../database/connection';
 
 export async function getRestaurantPage(req, res) {
+    var params = req.query;
+    if (!params.user_url) {
+        res.status(400).json({
+            error: "No se proporcionan los datos suficientes para la búsqueda"
+        });
+        return;
+    }
 
-    var path = req.params['path'];
-
-    const query = db.collection("users").where("user_url", "==", path);
+    const query = db.collection("users").where("user_url", "==", params.user_url);
     const users = await query.get();
     if (users.empty) {
         res.status(400).json({
             'error': 'No existe restaurante'
         });
+        return;
     }
 
     let response = {};
 
     var id = users.docs.at(0).id;
-    response.restaurant = Object.assign({}, {id}, users.docs.at(0).data());
+    response.restaurant = Object.assign({}, { id }, users.docs.at(0).data());
     response.categories = [];
 
     const userRef = db.collection('users').doc(id);
@@ -27,7 +33,7 @@ export async function getRestaurantPage(req, res) {
 
         var dishes = [];
         snapshot.docs.forEach(doc => {
-            dishes.push(Object.assign({}, {"id":doc.id, "cat":collection.id}, doc.data()));
+            dishes.push(Object.assign({}, { "id": doc.id, "cat": collection.id }, doc.data()));
         });
 
         var cat = { name: "", dishes: [] };
@@ -35,7 +41,6 @@ export async function getRestaurantPage(req, res) {
         cat.dishes = dishes;
 
         response.categories.push(cat);
-
 
         /*
         response
@@ -67,7 +72,7 @@ export async function getRestaurantPage(req, res) {
     }
 
     res.status(200).json(response);
-    
+
 }
 
 export async function getFeaturedRestaurant(req, res) {
@@ -87,6 +92,58 @@ export async function getFeaturedRestaurant(req, res) {
 
     res.status(200).json(response.users);
 
+}
+
+export async function getRestaurantData(req, res) {
+    var params = req.query;
+    if (!params.user_url) {
+        res.status(400).json({
+            error: "No se proporcionan los datos suficientes para la búsqueda"
+        });
+        return;
+    }
+
+    const query = db.collection("users").where("user_url", "==", params.user_url);
+    const users = await query.get();
+    if (users.empty) {
+        res.status(400).json({
+            'error': 'No existe restaurante'
+        });
+        return;
+    }
+
+    let response = Object.assign({id:users.docs.at(0).id}, users.docs.at(0).data());
+
+    res.status(200).json(response);
+    return;
+}
+
+export async function updateRestaurantData(req, res){
+    let page = req.body;
+
+    const response = await db.collection('users')
+        .doc(page.id).update(page);
+
+    console.log('updated document with ID: ', page.id);
+    res.status(200).json({ message: `updated document with ID: ${page.id}` });
+}
+
+export async function getExistsURL(req, res) {
+    var params = req.query;
+    if (!params.user_url) {
+        res.status(400).json({
+            error: "No se proporcionan los datos suficientes para la búsqueda"
+        });
+        return;
+    }
+    const query = db.collection("users").where("user_url", "==", params.user_url);
+    const users = await query.get();
+    if (users.empty) {
+        res.status(200).json({ exists: false });
+        return;
+    }
+    res.status(200).json({ exists: true });
+    return;
 }
 
 function getThreeUsers(users) {
