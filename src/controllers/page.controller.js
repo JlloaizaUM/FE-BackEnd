@@ -20,8 +20,8 @@ export async function getRestaurantPage(req, res) {
 
     let response = {};
 
-    var id = users.docs.at(0).id;
-    response.restaurant = Object.assign({}, { id }, users.docs.at(0).data());
+    var id = users.docs[0].id;
+    response.restaurant = Object.assign({}, { id }, users.docs[0].data());
     response.categories = [];
 
     const userRef = db.collection('users').doc(id);
@@ -104,6 +104,7 @@ export async function getRestaurantData(req, res) {
     }
 
     const query = db.collection("users").where("user_url", "==", params.user_url);
+    
     const users = await query.get();
     if (users.empty) {
         res.status(400).json({
@@ -112,7 +113,7 @@ export async function getRestaurantData(req, res) {
         return;
     }
 
-    let response = Object.assign({id:users.docs.at(0).id}, users.docs.at(0).data());
+    let response = Object.assign({id:users.docs[0].id}, users.docs[0].data());
 
     res.status(200).json(response);
     return;
